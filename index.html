@@ -352,7 +352,8 @@ p{margin:0;text-wrap:pretty}
 .back-cover.view{min-height:100svh}
 .next-view{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:clamp(56px,9vh,110px);padding-top:clamp(20px,3vw,32px);border-top:1px solid var(--ink);text-decoration:none;font-family:var(--f-display)}
 .next-view span{display:block;font-size:var(--t-s);color:var(--ink-2);margin-bottom:6px}
-.next-view b{display:block;font-size:clamp(40px,6vw,96px);font-weight:650;letter-spacing:-.04em;line-height:.95;font-variation-settings:"wdth" 82;transition:font-variation-settings .6s var(--ease)}
+.next-view > div{min-width:0}
+.next-view b{display:block;font-size:clamp(30px,6vw,96px);overflow-wrap:anywhere;font-weight:650;letter-spacing:-.04em;line-height:.95;font-variation-settings:"wdth" 82;transition:font-variation-settings .6s var(--ease)}
 .next-view i{flex:none;width:clamp(56px,6vw,84px);aspect-ratio:1;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:clamp(20px,2vw,28px);transition:background .3s,color .3s,transform .5s var(--ease)}
 .next-view:hover b{font-variation-settings:"wdth" 100}
 .next-view:hover i{background:var(--acid);transform:rotate(-45deg)}
@@ -456,7 +457,7 @@ p{margin:0;text-wrap:pretty}
 .menu-panel.open a{opacity:1;transform:none;transition-delay:calc(.18s + var(--i) * 55ms)}
 .menu-panel a span{font-size:14px;font-weight:600;color:var(--acid);letter-spacing:0;min-width:2ch}
 .menu-panel a:hover,.menu-panel a[aria-current="true"]{color:var(--acid)}
-@media (max-width:1240px){.nav ul{display:none}.menu-btn{display:inline-flex;align-items:center}}
+@media (max-width:1380px){.nav ul{display:none}.menu-btn{display:inline-flex;align-items:center}}
 
 /* galería: sala de museo */
 .gallery{overflow:visible;padding:0;background:#fff;overflow-anchor:none}
@@ -466,7 +467,7 @@ p{margin:0;text-wrap:pretty}
 .hall::after{content:"";position:absolute;inset:auto 0 0;height:20%;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0 1px,transparent 1px 160px)}
 .hall-track{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;gap:clamp(90px,11vw,200px);padding:0 clamp(60px,12vw,220px) 0 var(--gutter);will-change:transform}
 .hall-intro{flex:none;width:min(640px,78vw);align-self:center;padding-top:6vh}
-.sala{font-family:var(--f-display);font-size:var(--t-s);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.hall-sala{font-family:var(--f-display);font-size:var(--t-s);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 .hall-intro h2{font-family:var(--f-display);font-weight:700;font-size:clamp(90px,17vw,300px);line-height:.8;letter-spacing:-.065em;font-variation-settings:"wdth" 76;margin:14px 0 22px;overflow:hidden;padding-bottom:.05em}
 .hall-intro h2 .ch{display:inline-block}
 .view.is-on .hall-intro h2 .ch{animation:riseIn 1.1s var(--ease) both;animation-delay:calc(var(--i) * 45ms)}
@@ -522,6 +523,129 @@ p{margin:0;text-wrap:pretty}
   .cedula,.cedula.l,.cedula.r{position:static;width:auto;text-align:left;opacity:1;transform:none;margin-top:12px}
   .hall-ui,.hall-hint{display:none}
   .dark-cap{max-width:none;right:var(--gutter);bottom:84px}
+}
+
+/* sala de cine */
+.cine{position:relative;min-height:100svh;background:#07070A;color:#EDE6DA;padding:clamp(90px,12vh,130px) var(--gutter) clamp(60px,9vh,100px);overflow:hidden;isolation:isolate}
+.cine-lights{position:absolute;inset:0;z-index:20;pointer-events:none;background:#F4EFE6;opacity:0}
+.view.is-on .cine-lights{animation:lightsOff 1.8s var(--ease) both .2s}
+@keyframes lightsOff{0%{opacity:.85}100%{opacity:0}}
+.cine-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px 40px;flex-wrap:wrap;margin-bottom:clamp(26px,4vh,44px)}
+.marquee{position:relative;padding:18px 26px;border:2px solid #C9A45C;border-radius:10px;background:linear-gradient(#141018,#0b0a0e);box-shadow:0 0 40px rgba(201,164,92,.18),inset 0 0 30px rgba(201,164,92,.08)}
+.marquee p{font-family:var(--f-display);font-size:var(--t-xs);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#C9A45C}
+.marquee h2{font-family:var(--f-display);font-weight:800;font-size:clamp(48px,7.6vw,128px);line-height:.86;letter-spacing:-.045em;font-variation-settings:"wdth" 78;color:#FFF6E4;text-shadow:0 0 24px rgba(255,214,140,.45),0 0 2px #fff}
+.bulbs{position:absolute;left:10px;right:10px;height:8px;background:radial-gradient(circle,#FFD98A 0 2.4px,transparent 3px) 0 0/18px 8px repeat-x;filter:drop-shadow(0 0 4px #FFC34D);animation:chase 1.1s steps(2) infinite}
+.bulbs:first-child{top:-5px}.bulbs:last-child{bottom:-5px;animation-delay:.55s}
+@keyframes chase{50%{opacity:.35}}
+.cine-lede{max-width:32ch;font-size:var(--t-l);line-height:1.35;color:rgba(237,230,218,.7)}
+.theater{position:relative;perspective:1200px}
+.beam{position:absolute;left:0;top:-140px;width:100%;height:calc(100% + 140px);pointer-events:none;z-index:3;mix-blend-mode:screen;transition:opacity .6s}
+.theater.film .beam{opacity:0}
+.screen-wrap{position:relative;width:min(100%,1180px);margin:0 auto;aspect-ratio:16/9;overflow:hidden;border-radius:6px;transform:rotateX(2deg);transform-origin:50% 100%}
+.screen{position:absolute;inset:0;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 160px rgba(255,240,210,.12)}
+.trailer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.75);transition:opacity .8s}
+.screen::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.65) 100%),linear-gradient(180deg,rgba(0,0,0,.2),transparent 30%,rgba(0,0,0,.75))}
+.screen-ui{position:absolute;z-index:2;left:clamp(18px,4%,48px);right:clamp(18px,4%,48px);bottom:clamp(18px,6%,52px);max-width:640px;transition:opacity .5s}
+.s-tag{display:inline-block;font-family:var(--f-display);font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C9A45C}
+.screen-ui h3{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,6vw,92px);line-height:.88;letter-spacing:-.045em;font-variation-settings:"wdth" 80;color:#fff;margin:8px 0 10px}
+.screen-ui p{font-size:clamp(15px,1.3vw,20px);line-height:1.38;color:rgba(255,255,255,.82);max-width:44ch}
+.screen-ui.swap > *{animation:fade .7s var(--ease) both}
+.screen-ui.swap > :nth-child(2){animation-delay:.08s}.screen-ui.swap > :nth-child(3){animation-delay:.16s}.screen-ui.swap > :nth-child(4){animation-delay:.24s}
+.s-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.s-play{min-height:50px;padding:0 24px;border-radius:999px;border:0;background:#FFF6E4;color:#111;font-family:var(--f-display);font-weight:700;font-size:var(--t-m);box-shadow:0 0 30px rgba(255,214,140,.4);transition:transform .3s var(--ease),background .3s}
+.s-play:hover{transform:scale(1.04);background:var(--acid)}
+.s-yt{font-family:var(--f-display);font-size:var(--t-s);color:rgba(255,255,255,.75);text-decoration:none}
+.s-yt:hover{color:#fff}
+.leader{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:#1a1712;opacity:0;pointer-events:none}
+.leader::before{content:"";position:absolute;width:min(56%,56vh);aspect-ratio:1;border-radius:50%;border:3px solid rgba(255,246,228,.7);background:conic-gradient(rgba(255,246,228,.22) var(--sw,0deg),transparent 0)}
+.leader::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent calc(50% - 1px),rgba(255,246,228,.5) 0 calc(50% + 1px),transparent 0),linear-gradient(0deg,transparent calc(50% - 1px),rgba(255,246,228,.5) 0 calc(50% + 1px),transparent 0)}
+.leader span{position:relative;z-index:1;font-family:var(--f-display);font-weight:800;font-size:clamp(80px,18vw,240px);color:#FFF6E4;line-height:1}
+.leader.on{opacity:1;animation:flicker .12s infinite alternate}
+@keyframes flicker{to{filter:brightness(.88)}}
+.player{position:absolute;inset:0;z-index:5;background:#000;display:none}
+.player iframe{width:100%;height:100%;border:0}
+.screen.playing .player{display:block}
+.screen.playing .screen-ui{opacity:0;pointer-events:none}
+.s-exit{position:absolute;z-index:6;top:12px;right:12px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.55);color:#fff;font-family:var(--f-display);font-weight:600;font-size:var(--t-xs);display:none}
+.screen.playing .s-exit{display:block}
+.valance{position:absolute;z-index:8;left:0;right:0;top:0;height:9%;background:repeating-linear-gradient(90deg,#4b0a10 0 22px,#7c1720 22px 40px,#4b0a10 40px 60px);
+  -webkit-mask:radial-gradient(circle at 30px 0,#000 70%,transparent 72%) 0 100%/60px 100% repeat-x,linear-gradient(#000,#000) 0 0/100% 70% no-repeat;mask:radial-gradient(circle at 30px 0,#000 70%,transparent 72%) 0 100%/60px 100% repeat-x,linear-gradient(#000,#000) 0 0/100% 70% no-repeat;box-shadow:0 8px 20px rgba(0,0,0,.6)}
+.curtain{position:absolute;z-index:7;top:0;bottom:0;width:51%;transition:transform 2.2s cubic-bezier(.6,.05,.2,1);
+  background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 20%,transparent 80%,rgba(0,0,0,.35)),repeating-linear-gradient(90deg,#5a0c13 0,#8e1d27 3.5%,#b52a36 5%,#7a1520 7%,#4a0910 9%);box-shadow:0 0 40px rgba(0,0,0,.7)}
+.curtain.l{left:0;transform-origin:left}
+.curtain.r{right:0;transform-origin:right}
+.theater.open .curtain.l{transform:translateX(-88%) scaleX(.6)}
+.theater.open .curtain.r{transform:translateX(88%) scaleX(.6)}
+.seats{position:relative;z-index:9;margin:-2.5% auto 0;width:min(100%,1240px);height:clamp(70px,10vw,130px);display:grid;align-content:end;gap:6px;pointer-events:none}
+.seats i{display:block;height:clamp(18px,2.6vw,34px);border-radius:14px 14px 4px 4px;background:radial-gradient(ellipse 22px 100% at 50% 100%,#000 60%,transparent 62%) 0 0/clamp(44px,5vw,64px) 100% repeat-x;opacity:.95}
+.seats i:nth-child(1){margin:0 6%;opacity:.6}.seats i:nth-child(2){margin:0 3%;opacity:.8;background-position:22px 0}
+.cartelera{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px);margin-top:clamp(30px,5vh,56px)}
+.ticket{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:stretch;text-align:left;padding:0;border:0;border-radius:14px;overflow:hidden;background:#17151B;color:#EDE6DA;font:inherit;
+  box-shadow:0 0 0 1px rgba(237,230,218,.08);transition:transform .4s var(--ease),box-shadow .3s,background .3s;
+  -webkit-mask:radial-gradient(circle 10px at calc(100% - 78px) 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at calc(100% - 78px) 100%,transparent 98%,#000) bottom/100% 51% no-repeat;
+  mask:radial-gradient(circle 10px at calc(100% - 78px) 0,transparent 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 10px at calc(100% - 78px) 100%,transparent 98%,#000) bottom/100% 51% no-repeat}
+.ticket:hover{transform:translateY(-4px)}
+.ticket[aria-pressed="true"]{background:#221E14;box-shadow:0 0 0 1.5px #C9A45C,0 20px 40px -20px rgba(201,164,92,.5)}
+.t-img{width:clamp(64px,6vw,92px);background:#000}
+.t-img img{width:100%;height:100%;object-fit:cover}
+.t-body{padding:14px 16px;display:grid;gap:3px;align-content:center}
+.t-body small{font-family:var(--f-display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A45C}
+.t-body b{font-family:var(--f-display);font-size:clamp(18px,1.6vw,24px);letter-spacing:-.02em;color:#fff}
+.t-body span{font-family:var(--f-display);font-size:var(--t-xs);color:rgba(237,230,218,.6)}
+.t-stub{width:78px;border-left:2px dashed rgba(237,230,218,.25);display:grid;place-items:center;align-content:center;gap:2px;font-family:var(--f-display)}
+.t-stub i{font-style:normal;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,230,218,.55);writing-mode:vertical-rl;transform:rotate(180deg)}
+.t-stub em{font-style:normal;font-weight:800;font-size:22px;color:#C9A45C}
+.cine .next-view{border-color:rgba(237,230,218,.4)}
+.cine .next-view span{color:rgba(237,230,218,.6)}
+.cine .next-view i{border-color:rgba(237,230,218,.5)}
+.cine .next-view:hover i{color:var(--ink)}
+@media (max-width:900px){
+  .cartelera{grid-template-columns:minmax(0,1fr)}
+  .screen-wrap{transform:none;aspect-ratio:4/5}
+  .screen-ui p{display:none}
+  .seats{display:none}
+}
+
+/* ajustes para celular */
+.s-yt{padding:12px 4px}
+.foot a{padding:12px 0;margin:-12px 0}
+.t-stub i{font-size:11px}
+@container (max-width:560px){
+  .dash-side{display:none}
+  .dash-main{grid-column:1 / -1;padding:4cqh 5cqw;gap:2.6cqh}
+  .dash-top b{font-size:max(15px,4.6cqh)}
+  .dash-live{font-size:max(11px,2cqh)}
+  .dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.4cqw}
+  .kpi{padding:1.8cqh 2cqw}
+  .kpi span{font-size:max(11px,1.9cqh)}
+  .kpi b{font-size:max(18px,4.4cqh)}
+  .kpi em{font-size:max(10.5px,1.6cqh)}
+  .dash-sec{font-size:max(13px,2.8cqh)}
+  .dash-row{grid-template-columns:22% 1fr 22%;font-size:max(11px,2cqh)}
+  .dash-row .er{display:none}
+  .dash-pulse{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dash-pulse div:last-child{display:none}
+  .dash-pulse small{font-size:max(10.5px,1.6cqh)}
+  .dash-pulse b{font-size:max(14px,3.2cqh)}
+}
+@media (max-width:760px){
+  .pg-photos.on-chart{height:min(150vw,640px)}
+  .pg-photos.n1:has(.dash){height:min(150vw,640px)}
+  .cf{padding:4cqh 5cqw;gap:3cqh}
+  .cf-big b{font-size:max(26px,min(8cqh,9cqw))}
+  .cf-big span{font-size:max(11px,min(2.4cqh,2.8cqw))}
+  .cf-mid{grid-template-columns:minmax(0,1fr);gap:3cqh}
+  .cf h4{font-size:max(12px,2.6cqh);margin-bottom:1.6cqh}
+  .cf-stars{gap:1.4cqh}
+  .cf-star{font-size:max(11px,2.2cqh)}
+  .cf-star .tr{height:max(8px,2.2cqh)}
+  .cf-words span{font-size:max(11px,calc(1.9cqh * var(--s,1)))}
+  .cf-bot{display:none}
+  .sala-dash{width:auto;height:min(calc(100svh - 420px),calc((100vw - 2 * var(--gutter)) * 5 / 4));aspect-ratio:4/5;max-width:100%}
+  .sala.is-data .sala-name{font-size:clamp(48px,14vw,80px)}
+  .sala.is-data .sala-desc{font-size:var(--t-m)}
+  .tools .bub small{display:none}
+  .cf .cf-words span small{font-size:max(10.5px,.62em)}
 }
 
 /* ventanas de perfil */
@@ -776,6 +900,7 @@ p{margin:0;text-wrap:pretty}
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
     <li><a href="#galeria">Galería</a></li>
+    <li><a href="#cine">Cine</a></li>
     <li><a href="#perfil">Perfil</a></li>
     <li><a href="#trayectoria">Trayectoria</a></li>
     <li><a href="#reconocimientos">Reconocimientos</a></li>
@@ -789,11 +914,12 @@ p{margin:0;text-wrap:pretty}
     <li><a href="#inicio" style="--i:0"><span>01</span>Inicio</a></li>
     <li><a href="#proyectos" style="--i:1"><span>02</span>Proyectos</a></li>
     <li><a href="#galeria" style="--i:2"><span>03</span>Galería</a></li>
-    <li><a href="#perfil" style="--i:3"><span>04</span>Perfil</a></li>
-    <li><a href="#trayectoria" style="--i:4"><span>05</span>Trayectoria</a></li>
-    <li><a href="#reconocimientos" style="--i:5"><span>06</span>Reconocimientos</a></li>
-    <li><a href="#herramientas" style="--i:6"><span>07</span>Herramientas</a></li>
-    <li><a href="#contacto" style="--i:7"><span>08</span>Contacto</a></li>
+    <li><a href="#cine" style="--i:3"><span>04</span>Cine</a></li>
+    <li><a href="#perfil" style="--i:4"><span>05</span>Perfil</a></li>
+    <li><a href="#trayectoria" style="--i:5"><span>06</span>Trayectoria</a></li>
+    <li><a href="#reconocimientos" style="--i:6"><span>07</span>Reconocimientos</a></li>
+    <li><a href="#herramientas" style="--i:7"><span>08</span>Herramientas</a></li>
+    <li><a href="#contacto" style="--i:8"><span>09</span>Contacto</a></li>
   </ol>
 </div>
 
@@ -807,6 +933,7 @@ p{margin:0;text-wrap:pretty}
           <source src="media/portada.webm" type="video/webm">
           <source src="media/portada.mp4" type="video/mp4">
         </video>
+        <script>(function(){var v=document.currentScript.previousElementSibling;if(matchMedia('(max-width: 760px)').matches){v.innerHTML='<source src="media/portada-movil.mp4" type="video/mp4">';v.load();}})();</script>
         <div class="slot-hint"><b>Video de portada</b>16:9, 10 a 20 s, sin audio<code>media/portada.mp4</code></div>
       </div>
     </div>
@@ -852,10 +979,10 @@ p{margin:0;text-wrap:pretty}
           <svg class="iso" viewBox="0 0 40 40" aria-hidden="true"><path class="draw" d="M20 24 L36 31 L20 38 L4 31 Z"/><path class="draw" d="M10 31 L10 22 M20 35 L20 8 M30 31 L30 16"/><path d="M10 22 L20 8 L30 16"/></svg>
           <span class="disc-name">Datos</span><span class="disc-kind">Inteligencia de audiencias</span><span class="disc-go" aria-hidden="true"><i>▶</i><span>Ver</span></span></button>
       </article>
-      <article class="disc" data-src="media/tecnologia.mp4" data-desc="Prototipos web y automatización con modelos de IA locales, como la estatuilla 3D de ChampiAwards.">
+      <article class="disc" data-src="media/tecnologia.mp4" data-desc="Desarrollo de herramientas de automatización e integración entre softwares de posproducción y modelado 3D, para llevar una idea del concepto a la pantalla.">
         <button class="disc-head" type="button" aria-haspopup="dialog">
           <svg class="iso" viewBox="0 0 40 40" aria-hidden="true"><path class="draw" d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z"/><path class="draw" d="M4 11 L20 20 L36 11 M20 20 L20 38"/><path d="M20 7 L28 11.5 L20 16 L12 11.5 Z"/></svg>
-          <span class="disc-name">Tecnología</span><span class="disc-kind">Prototipos e IA local</span><span class="disc-go" aria-hidden="true"><i>▶</i><span>Ver</span></span></button>
+          <span class="disc-name">Tecnología</span><span class="disc-kind">Automatización y 3D</span><span class="disc-go" aria-hidden="true"><i>▶</i><span>Ver</span></span></button>
       </article>
     </div>
     <p class="disc-tip">Elige una disciplina para verla en pantalla completa. Dentro puedes pasar a las demás.</p>
@@ -888,10 +1015,10 @@ p{margin:0;text-wrap:pretty}
   <div class="spreads" id="track">
     <!-- A1 -->
     <article class="spread" data-line="A" data-title="El camino del caracol">
-      <div class="pg pg-photos">
-        <figure class="print"><div class="slot is-empty"><img src="media/caracol-1.jpg" alt="Proyección de El camino del caracol en un auditorio lleno de estudiantes"><div class="slot-hint"><b>Proyección</b><code>media/caracol-1.jpg</code></div></div></figure>
-        <figure class="print tall"><div class="slot is-empty"><img src="media/caracol-2.jpg" alt="Cartel de El camino del caracol: un caracol sobre una figura de colores"><div class="slot-hint"><b>Cartel</b><code>media/caracol-2.jpg</code></div></div></figure>
-        <figure class="print"><div class="slot is-empty"><img src="media/caracol-3.jpg" alt="Toma aérea de canales y chinampas"><div class="slot-hint"><b>Fotograma</b><code>media/caracol-3.jpg</code></div></div></figure>
+      <div class="pg pg-photos n4">
+        <figure class="print"><div class="slot is-empty"><img data-src="media/caracol-1.jpg" alt="Proyección de El camino del caracol en un auditorio lleno de estudiantes" loading="lazy" decoding="async"><div class="slot-hint"><b>Proyección</b><code>media/caracol-1.jpg</code></div></div></figure>
+        <figure class="print tall"><div class="slot is-empty"><img data-src="media/caracol-2.jpg" alt="Cartel de El camino del caracol: un caracol sobre una figura de colores" loading="lazy" decoding="async"><div class="slot-hint"><b>Cartel</b><code>media/caracol-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/caracol-3.jpg" alt="Toma aérea de canales y chinampas" loading="lazy" decoding="async"><div class="slot-hint"><b>Fotograma</b><code>media/caracol-3.jpg</code></div></div></figure>
         <figure class="print diagram"><div class="cf" id="cineforo" role="img" aria-label="Resultados del cineforo: 1,026 respuestas, calificación promedio de 4.45 de 5, 90.5% lo calificó con 4 o 5 estrellas. El Monstruo más mencionado fue la contaminación.">
           <div class="cf-big">
             <div><b data-to="1026">1,026</b><span>respuestas en 12 días</span></div>
@@ -910,7 +1037,7 @@ p{margin:0;text-wrap:pretty}
         <h3>El camino del caracol</h3>
         <p class="pg-role">Dirección, guion y montaje</p>
         <p>Primer documental de la Provincia Marista de México Central, sobre el Buen Vivir. Después de verlo, estudiantes, docentes y familias de 16 colegios y obras respondieron un cineforo.</p>
-        <a class="pg-link" href="https://www.youtube.com/watch?v=AyXnP10dirg" target="_blank" rel="noopener">Ver el documental ↗</a>
+        <a class="pg-link" href="#cine" data-film="0">Ver en la sala de cine →</a>
         <dl class="facts">
           <div><dt>respuestas en el cineforo</dt><dd>1,026</dd></div>
           <div><dt>le dio 4 o 5 estrellas</dt><dd>90.5%</dd></div>
@@ -922,28 +1049,52 @@ p{margin:0;text-wrap:pretty}
       </div>
     </article>
     <!-- A2 -->
-    <article class="spread" data-line="A" data-title="Raíces y Los maestros">
-      <div class="pg pg-photos n2">
-        <figure class="print"><div class="slot is-empty"><img src="media/raices.jpg" alt="Cartel de Raíces, un filme de David Morán"><div class="slot-hint"><b>Raíces</b><code>media/raices.jpg</code></div></div></figure>
-        <figure class="print"><span class="tape"></span><div class="slot is-empty"><img src="media/los-maestros.jpg" alt="Fotograma de Los maestros"><div class="slot-hint"><b>Los maestros</b>Still horizontal 3:2<code>media/los-maestros.jpg</code></div></div></figure>
+    <article class="spread" data-line="A" data-title="Raíces">
+      <div class="pg pg-photos n4">
+        <figure class="print"><div class="slot is-empty"><img data-src="media/raices.jpg" alt="Cartel de Raíces, un filme de David Morán" loading="lazy" decoding="async"><div class="slot-hint"><code>media/raices.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/raices-1.jpg" alt="Manos, fotograma de Raíces" loading="lazy" decoding="async"><div class="slot-hint"><code>media/raices-1.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/raices-2.jpg" alt="Vista aérea de chinampas, fotograma de Raíces" loading="lazy" decoding="async"><div class="slot-hint"><code>media/raices-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/raices-3.jpg" alt="Atardecer sobre el lago, fotograma de Raíces" loading="lazy" decoding="async"><div class="slot-hint"><code>media/raices-3.jpg</code></div></div></figure>
       </div>
       <div class="pg pg-text">
-        <div class="pg-meta"><span><b>A</b>Documental</span><span class="num">2019 y 2022</span></div>
-        <h3>Raíces y Los maestros</h3>
-        <p class="pg-role">Dirección y edición</p>
-        <p>Dos documentales sobre saberes locales y metodologías comunitarias. Producción, montaje, sonido e hilo narrativo.</p>
+        <div class="pg-meta"><span><b>A</b>Documental</span><span class="num">10 min</span></div>
+        <h3>Raíces</h3>
+        <p class="pg-role">Dirección, guion y fotografía</p>
+        <p>Un documental sobre la tierra y quienes la trabajan. Con él gané el premio a Mejor documental en el Festival Internacional de Cine Comunitario, en El Salvador.</p>
+        <a class="pg-link" href="#cine" data-film="1">Ver en la sala de cine →</a>
         <dl class="facts words">
-          <div><dt>2022</dt><dd>Raíces</dd></div>
-          <div><dt>2019</dt><dd>Los maestros</dd></div>
+          <div><dt>Festival Internacional de Cine Comunitario, El Salvador</dt><dd>Mejor documental</dd></div>
+          <div><dt>duración</dt><dd>10:52</dd></div>
+        </dl>
+      </div>
+    </article>
+    <!-- A3 -->
+    <article class="spread" data-line="A" data-title="Los maestros">
+      <div class="pg pg-photos n5">
+        <figure class="print"><div class="slot is-empty"><img data-src="media/maestros-2.jpg" alt="Hombre mayor con lentes mirando a cámara, fotograma de Los maestros" loading="lazy" decoding="async"><div class="slot-hint"><code>media/maestros-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/maestros-1.jpg" alt="Mujer mayor conmovida, fotograma de Los maestros" loading="lazy" decoding="async"><div class="slot-hint"><code>media/maestros-1.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/maestros-3.jpg" alt="Mujer mayor con pañoleta, fotograma de Los maestros" loading="lazy" decoding="async"><div class="slot-hint"><code>media/maestros-3.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/maestros-4.jpg" alt="Residentes de un asilo junto a una mesa, fotograma de Los maestros" loading="lazy" decoding="async"><div class="slot-hint"><code>media/maestros-4.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/los-maestros.jpg" alt="Hombre mayor de bigote, fotograma de Los maestros" loading="lazy" decoding="async"><div class="slot-hint"><code>media/los-maestros.jpg</code></div></div></figure>
+      </div>
+      <div class="pg pg-text">
+        <div class="pg-meta"><span><b>A</b>Documental</span><span class="num">2019</span></div>
+        <h3>Los maestros</h3>
+        <p class="pg-role">Ópera prima · Dirección y edición</p>
+        <p>Mi primer documental: cómo se viven el amor y la muerte en un asilo de ancianos, contado por quienes lo habitan.</p>
+        <a class="pg-link" href="#cine" data-film="2">Ver en la sala de cine →</a>
+        <dl class="facts words">
+          <div><dt>primer documental</dt><dd>Ópera prima</dd></div>
+          <div><dt>duración</dt><dd>9:01</dd></div>
         </dl>
       </div>
     </article>
     <!-- B1 -->
     <article class="spread" data-line="B" data-title="Provincia Marista de México Central">
       <div class="pg pg-photos n3">
-        <figure class="print"><div class="slot is-empty" data-video><video src="media/maristas-1.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Fragmento del video institucional del Instituto México Primaria"></video><div class="slot-hint"><b>Video institucional</b><code>media/maristas-1.mp4</code></div></div></figure>
-        <figure class="print tall"><span class="tape"></span><div class="slot is-empty" data-video><video src="media/maristas-2.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Fragmento de un spot vertical para el Instituto México Toluca"></video><div class="slot-hint"><b>Spot vertical</b><code>media/maristas-2.mp4</code></div></div></figure>
-        <figure class="print"><div class="slot is-empty"><img src="media/maristas-3.jpg" alt="Estudiante en un laboratorio de ciencias, fotograma de un spot"><div class="slot-hint"><b>Campaña</b><code>media/maristas-3.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty" data-video><video src="media/maristas-1.mp4" data-poster="media/maristas-1-poster.jpg" muted loop playsinline preload="none" aria-label="Fragmento del video institucional del Instituto México Primaria"></video><div class="slot-hint"><b>Video institucional</b><code>media/maristas-1.mp4</code></div></div></figure>
+        <figure class="print tall"><span class="tape"></span><div class="slot is-empty" data-video><video src="media/maristas-2.mp4" data-poster="media/maristas-2-poster.jpg" muted loop playsinline preload="none" aria-label="Fragmento de un spot vertical para el Instituto México Toluca"></video><div class="slot-hint"><b>Spot vertical</b><code>media/maristas-2.mp4</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/maristas-3.jpg" alt="Estudiante en un laboratorio de ciencias, fotograma de un spot" loading="lazy" decoding="async"><div class="slot-hint"><b>Campaña</b><code>media/maristas-3.jpg</code></div></div></figure>
       </div>
       <div class="pg pg-text">
         <div class="pg-meta"><span><b>B</b>Comunicación institucional</span><span class="num">2023 a hoy</span></div>
@@ -956,13 +1107,37 @@ p{margin:0;text-wrap:pretty}
         </dl>
       </div>
     </article>
+    <!-- B1b -->
+    <article class="spread" data-line="B" data-title="Conecta +">
+      <div class="pg pg-photos n9">
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-1.jpg" alt="Asistentes de Conecta + atentos a una presentación" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-1.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty" data-video><video src="media/conecta.mp4" data-poster="media/conecta-poster.jpg" muted loop playsinline preload="none" aria-label="Fragmento del video de Conecta +"></video><div class="slot-hint"><code>media/conecta.mp4</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-2.jpg" alt="Participantes de pie celebrando en Conecta +" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-3.jpg" alt="Asistentes con las manos arriba durante una dinámica" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-3.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-8.jpg" alt="Mesa de trabajo durante Conecta +" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-8.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-6.jpg" alt="Participantes alrededor de una mesa con tarjetas" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-6.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-7.jpg" alt="Asistente sonriendo con una tarjeta en la mano" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-7.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-4.jpg" alt="Foto grupal de los asistentes a Conecta +" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-4.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/conecta-5.jpg" alt="Equipo de Conecta + en un patio" loading="lazy" decoding="async"><div class="slot-hint"><code>media/conecta-5.jpg</code></div></div></figure>
+      </div>
+      <div class="pg pg-text">
+        <div class="pg-meta"><span><b>B</b>Encuentro nacional</span><span class="num">2026</span></div>
+        <h3>Conecta +</h3>
+        <p class="pg-role">Equipo organizador · Capacitación</p>
+        <p>Encuentro de comunicación de la red marista. Formé parte del equipo organizador y di capacitaciones a equipos de comunicación y mercadotecnia.</p>
+        <dl class="facts words">
+          <div><dt>del encuentro</dt><dd>Equipo organizador</dd></div>
+          <div><dt>a equipos de comunicación y mercadotecnia</dt><dd>Capacitaciones</dd></div>
+        </dl>
+      </div>
+    </article>
     <!-- B2 -->
     <article class="spread" data-line="B" data-title="VoluntariadoMx">
       <div class="pg pg-photos n4">
-        <figure class="print"><span class="tape"></span><div class="slot is-empty"><img src="media/voluntariadomx-3.jpg" alt="Cartel de la segunda convocatoria de voluntariado con personas migrantes en Tapachula"><div class="slot-hint"><b>Convocatoria</b><code>media/voluntariadomx-3.jpg</code></div></div></figure>
-        <figure class="print"><div class="slot is-empty"><img src="media/voluntariadomx-1.jpg" alt="Logotipo de VoluntariadoMx: un faro sobre fondo amarillo"><div class="slot-hint"><b>Identidad</b><code>media/voluntariadomx-1.jpg</code></div></div></figure>
-        <figure class="print tall"><div class="slot is-empty"><img src="media/voluntariadomx-2.jpg" alt="Cartel Actúa hoy: haz voluntariado con personas migrantes"><div class="slot-hint"><b>Campaña</b><code>media/voluntariadomx-2.jpg</code></div></div></figure>
-        <figure class="print"><div class="slot is-empty"><img src="media/voluntariadomx-4.jpg" alt="Pieza para redes Ping pong con Beto, encargado de voluntariado"><div class="slot-hint"><b>Redes</b><code>media/voluntariadomx-4.jpg</code></div></div></figure>
+        <figure class="print"><span class="tape"></span><div class="slot is-empty"><img data-src="media/voluntariadomx-3.jpg" alt="Cartel de la segunda convocatoria de voluntariado con personas migrantes en Tapachula" loading="lazy" decoding="async"><div class="slot-hint"><b>Convocatoria</b><code>media/voluntariadomx-3.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/voluntariadomx-1.jpg" alt="Logotipo de VoluntariadoMx: un faro sobre fondo amarillo" loading="lazy" decoding="async"><div class="slot-hint"><b>Identidad</b><code>media/voluntariadomx-1.jpg</code></div></div></figure>
+        <figure class="print tall"><div class="slot is-empty"><img data-src="media/voluntariadomx-2.jpg" alt="Cartel Actúa hoy: haz voluntariado con personas migrantes" loading="lazy" decoding="async"><div class="slot-hint"><b>Campaña</b><code>media/voluntariadomx-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/voluntariadomx-4.jpg" alt="Pieza para redes Ping pong con Beto, encargado de voluntariado" loading="lazy" decoding="async"><div class="slot-hint"><b>Redes</b><code>media/voluntariadomx-4.jpg</code></div></div></figure>
       </div>
       <div class="pg pg-text">
         <div class="pg-meta"><span><b>B</b>Impacto social</span><span class="num">2021 a 2024</span></div>
@@ -978,8 +1153,8 @@ p{margin:0;text-wrap:pretty}
     <!-- B3 -->
     <article class="spread" data-line="B" data-title="Corazón Sin Fronteras">
       <div class="pg pg-photos n2">
-        <figure class="print"><div class="slot is-empty"><img src="media/guajira-1.jpg" alt="Niñas y niños jugando con un balón en una cancha"><div class="slot-hint"><b>La Guajira</b><code>media/guajira-1.jpg</code></div></div></figure>
-        <figure class="print"><span class="tape"></span><div class="slot is-empty"><img src="media/guajira-2.jpg" alt="Dos niñas posando frente a un mural, en blanco y negro"><div class="slot-hint"><b>La Guajira</b><code>media/guajira-2.jpg</code></div></div></figure>
+        <figure class="print"><div class="slot is-empty"><img data-src="media/guajira-1.jpg" alt="Niñas y niños jugando con un balón en una cancha" loading="lazy" decoding="async"><div class="slot-hint"><b>La Guajira</b><code>media/guajira-1.jpg</code></div></div></figure>
+        <figure class="print"><span class="tape"></span><div class="slot is-empty"><img data-src="media/guajira-2.jpg" alt="Dos niñas posando frente a un mural, en blanco y negro" loading="lazy" decoding="async"><div class="slot-hint"><b>La Guajira</b><code>media/guajira-2.jpg</code></div></div></figure>
       </div>
       <div class="pg pg-text">
         <div class="pg-meta"><span><b>B</b>Impacto social</span><span class="num">2024 a 2025</span></div>
@@ -995,7 +1170,7 @@ p{margin:0;text-wrap:pretty}
     <!-- C1 -->
     <article class="spread" data-line="C" data-title="ChampiLeaks">
       <div class="pg pg-photos n1">
-        <figure class="print diagram dash-fig"><img class="dash-shot" src="media/champileaks-dashboard.jpg" alt="Captura del Dashboard Global de ChampiLeaks" hidden>
+        <figure class="print diagram dash-fig"><img class="dash-shot" data-src="media/champileaks-dashboard.jpg" alt="Captura del Dashboard Global de ChampiLeaks" hidden>
           <div class="dash" id="dash" role="img" aria-label="Animación del Dashboard Global de ChampiLeaks: 370,433 seguidores, engagement promedio de 1.42% y desglose por red social">
             <aside class="dash-side" aria-hidden="true"><span class="lg"></span><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></aside>
             <div class="dash-main">
@@ -1027,16 +1202,15 @@ p{margin:0;text-wrap:pretty}
       </div>
     </article>
     <!-- C2 -->
-    <article class="spread" data-line="C" data-title="ChampiAwards y Conecta +">
-      <div class="pg pg-photos n2">
-        <figure class="print"><span class="tape"></span><div class="slot is-empty" data-video><video src="media/tecnologia.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Animación 3D de la estatuilla de ChampiAwards"></video><div class="slot-hint"><b>ChampiAwards</b><code>media/tecnologia.mp4</code></div></div></figure>
-        <figure class="print"><div class="slot is-empty" data-video><video src="media/conecta.mp4" muted loop playsinline autoplay preload="metadata" aria-label="Fragmento del video de Conecta +"></video><div class="slot-hint"><b>Conecta +</b><code>media/conecta.mp4</code></div></div></figure>
+    <article class="spread" data-line="C" data-title="ChampiAwards">
+      <div class="pg pg-photos n1">
+        <figure class="print"><div class="slot is-empty" data-video><video src="media/tecnologia.mp4" data-poster="media/tecnologia-poster.jpg" muted loop playsinline preload="none" aria-label="Animación 3D de la estatuilla de ChampiAwards"></video><div class="slot-hint"><code>media/tecnologia.mp4</code></div></div></figure>
       </div>
       <div class="pg pg-text">
-        <div class="pg-meta"><span><b>C</b>Producto digital</span><span>Prototipo</span></div>
-        <h3>ChampiAwards y Conecta +</h3>
-        <p class="pg-role">Concepto, datos y prototipo</p>
-        <p>Un prototipo web para organizar evaluaciones y reconocimientos, y el análisis de respuestas con promedios, categorías y rankings.</p>
+        <div class="pg-meta"><span><b>C</b>Reconocimientos</span><span>Concepto y prototipo</span></div>
+        <h3>ChampiAwards</h3>
+        <p class="pg-role">Concepto, selección y prototipo</p>
+        <p>Codiseñé el concepto y la selección de los ChampiAwards en colaboración con el equipo de comunicación central. También modelé y animé la estatuilla en 3D y desarrollé un prototipo web para organizar evaluaciones y reconocimientos.</p>
         <dl class="facts words">
           <div><dt>prototipo</dt><dd>Next.js, React, TypeScript</dd></div>
           <div><dt>datos</dt><dd>Supabase y PostgreSQL</dd></div>
@@ -1053,71 +1227,71 @@ p{margin:0;text-wrap:pretty}
     <div class="hall" id="hall">
       <div class="hall-track" id="hallTrack">
         <div class="hall-intro">
-          <p class="sala">Sala 01 · Fotografía</p>
+          <p class="hall-sala">Sala 01 · Fotografía</p>
           <h2 id="galTitle" class="split">Galería</h2>
           <p class="hall-lede">Retrato, territorio y escena. Catorce obras sobre personas que casi nunca salen en la foto.</p>
           <p class="hall-hint"><span class="mouse" aria-hidden="true"></span>Desplázate para recorrer la sala</p>
         </div>
       <figure class="obra" style="--h:76;--y:0;--ar:1.4010" data-i="0">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Mírate en mis ojos, obra 01"><img src="media/foto-mirate.jpg" alt="Mírate en mis ojos: retrato en blanco y negro de un hombre con tatuajes en el rostro" loading="lazy" width="863" height="616"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Mírate en mis ojos, obra 01"><img data-src="media/foto-mirate.jpg" alt="Mírate en mis ojos: retrato en blanco y negro de un hombre con tatuajes en el rostro" loading="lazy" width="863" height="616"></button>
         <figcaption class="cedula r"><span class="no">01</span><b>Mírate en mis ojos</b><span>David Morán Pérez</span><span>Serie Retrato</span><span>Fotografía digital en blanco y negro</span><em>2019 · Primer lugar, Noveno Concurso Nacional de Fotografía de Derechos Humanos</em></figcaption>
       </figure>
       <figure class="obra" style="--h:60;--y:-9;--ar:0.7059" data-i="1">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 02"><img src="media/foto-invernadero.jpg" alt="Retrato de una joven frente a un invernadero" loading="lazy" width="552" height="782"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 02"><img data-src="media/foto-invernadero.jpg" alt="Retrato de una joven frente a un invernadero" loading="lazy" width="552" height="782"></button>
         <figcaption class="cedula l"><span class="no">02</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Territorio</span><span>Fotografía digital a color</span></figcaption>
       </figure>
       <figure class="obra" style="--h:82;--y:3;--ar:0.5627" data-i="2">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: ¡Mira! En la sombra está escrito mi nombre, obra 03"><img src="media/foto-sombra.jpg" alt="¡Mira! En la sombra está escrito mi nombre: siluetas a contraluz y sus sombras largas" loading="lazy" width="1400" height="2488"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: ¡Mira! En la sombra está escrito mi nombre, obra 03"><img data-src="media/foto-sombra.jpg" alt="¡Mira! En la sombra está escrito mi nombre: siluetas a contraluz y sus sombras largas" loading="lazy" width="1400" height="2488"></button>
         <figcaption class="cedula r"><span class="no">03</span><b>¡Mira! En la sombra está escrito mi nombre</b><span>David Morán Pérez</span><span>Serie Escena</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:62;--y:9;--ar:0.9835" data-i="3">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 04"><img src="media/foto-machete.jpg" alt="Mujer sosteniendo un machete frente a una pared de madera" loading="lazy" width="775" height="788"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 04"><img data-src="media/foto-machete.jpg" alt="Mujer sosteniendo un machete frente a una pared de madera" loading="lazy" width="775" height="788"></button>
         <figcaption class="cedula l"><span class="no">04</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Territorio</span><span>Fotografía digital a color</span></figcaption>
       </figure>
       <figure class="obra" style="--h:72;--y:-6;--ar:0.7926" data-i="4">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 05"><img src="media/foto-tatuaje-2.jpg" alt="Retrato en blanco y negro de un hombre con un reloj tatuado en el cuello" loading="lazy" width="642" height="810"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 05"><img data-src="media/foto-tatuaje-2.jpg" alt="Retrato en blanco y negro de un hombre con un reloj tatuado en el cuello" loading="lazy" width="642" height="810"></button>
         <figcaption class="cedula r"><span class="no">05</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Retrato</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:64;--y:7;--ar:0.9833" data-i="5">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 06"><img src="media/foto-pescador.jpg" alt="Hombre sonriendo en una playa" loading="lazy" width="767" height="780"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 06"><img data-src="media/foto-pescador.jpg" alt="Hombre sonriendo en una playa" loading="lazy" width="767" height="780"></button>
         <figcaption class="cedula l"><span class="no">06</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Territorio</span><span>Fotografía digital a color</span></figcaption>
       </figure>
       <figure class="obra" style="--h:66;--y:-4;--ar:1.8000" data-i="6">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 07"><img src="media/foto-callejon.jpg" alt="Cuatro jóvenes corriendo por un callejón con grafiti" loading="lazy" width="1800" height="1000"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 07"><img data-src="media/foto-callejon.jpg" alt="Cuatro jóvenes corriendo por un callejón con grafiti" loading="lazy" width="1800" height="1000"></button>
         <figcaption class="cedula r"><span class="no">07</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Escena</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:58;--y:11;--ar:1.2958" data-i="7">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 08"><img src="media/foto-skate.jpg" alt="Joven con un tatuaje en el hombro en un skatepark con grafiti" loading="lazy" width="806" height="622"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 08"><img data-src="media/foto-skate.jpg" alt="Joven con un tatuaje en el hombro en un skatepark con grafiti" loading="lazy" width="806" height="622"></button>
         <figcaption class="cedula l"><span class="no">08</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Retrato</span><span>Fotografía digital a color</span></figcaption>
       </figure>
       <figure class="obra" style="--h:78;--y:-2;--ar:0.7214" data-i="8">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 09"><img src="media/foto-arbol.jpg" alt="Retrato en blanco y negro de una mujer junto a un árbol seco" loading="lazy" width="567" height="786"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 09"><img data-src="media/foto-arbol.jpg" alt="Retrato en blanco y negro de una mujer junto a un árbol seco" loading="lazy" width="567" height="786"></button>
         <figcaption class="cedula r"><span class="no">09</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Territorio</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:60;--y:-10;--ar:1.3263" data-i="9">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 10"><img src="media/foto-tatuaje-1.jpg" alt="Retrato de un hombre con tatuajes en el rostro" loading="lazy" width="756" height="570"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 10"><img data-src="media/foto-tatuaje-1.jpg" alt="Retrato de un hombre con tatuajes en el rostro" loading="lazy" width="756" height="570"></button>
         <figcaption class="cedula l"><span class="no">10</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Retrato</span><span>Fotografía digital a color</span></figcaption>
       </figure>
       <figure class="obra" style="--h:64;--y:6;--ar:1.7787" data-i="10">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 11"><img src="media/foto-concierto.jpg" alt="Banda tocando en vivo en un foro pequeño" loading="lazy" width="1800" height="1012"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 11"><img data-src="media/foto-concierto.jpg" alt="Banda tocando en vivo en un foro pequeño" loading="lazy" width="1800" height="1012"></button>
         <figcaption class="cedula r"><span class="no">11</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Escena</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:62;--y:-7;--ar:1.0062" data-i="11">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 12"><img src="media/foto-rio.jpg" alt="Silueta de una persona frente a un río" loading="lazy" width="807" height="802"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 12"><img data-src="media/foto-rio.jpg" alt="Silueta de una persona frente a un río" loading="lazy" width="807" height="802"></button>
         <figcaption class="cedula l"><span class="no">12</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Territorio</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:72;--y:2;--ar:1.0000" data-i="12">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 13"><img src="media/foto-retrato-humo.jpg" alt="Retrato en blanco y negro de un joven fumando" loading="lazy" width="812" height="812"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 13"><img data-src="media/foto-retrato-humo.jpg" alt="Retrato en blanco y negro de un joven fumando" loading="lazy" width="812" height="812"></button>
         <figcaption class="cedula r"><span class="no">13</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Retrato</span><span>Fotografía digital en blanco y negro</span></figcaption>
       </figure>
       <figure class="obra" style="--h:80;--y:0;--ar:0.6667" data-i="13">
-        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 14"><img src="media/foto-patio.jpg" alt="Joven saltando en un patio" loading="lazy" width="1400" height="2100"></button>
+        <button class="obra-img" type="button" aria-label="Ver en sala oscura: Sin título, obra 14"><img data-src="media/foto-patio.jpg" alt="Joven saltando en un patio" loading="lazy" width="1400" height="2100"></button>
         <figcaption class="cedula l"><span class="no">14</span><b>Sin título</b><span>David Morán Pérez</span><span>Serie Escena</span><span>Fotografía digital a color</span></figcaption>
       </figure>
         <div class="hall-end">
-          <p class="sala">Fin de la sala</p>
+          <p class="hall-sala">Fin de la sala</p>
           <p class="end-big">Gracias<br>por mirar.</p>
-          <a class="next-view" href="#perfil"><div><span>Siguiente</span><b>Perfil</b></div><i aria-hidden="true">→</i></a>
+          <a class="next-view" href="#cine"><div><span>Siguiente</span><b>Sala de cine</b></div><i aria-hidden="true">→</i></a>
         </div>
       </div>
       <div class="hall-ui" aria-hidden="true"><span id="hallCount">Sala 01</span><span class="hall-bar"><i id="hallBar"></i></span></div>
@@ -1125,11 +1299,58 @@ p{margin:0;text-wrap:pretty}
   </div>
 </section>
 
+<!-- SALA DE CINE -->
+<section class="cine view" data-view="cine" id="cine" aria-labelledby="cineTitle">
+  <div class="cine-lights" aria-hidden="true"></div>
+  <div class="cine-head">
+    <div class="marquee"><span class="bulbs" aria-hidden="true"></span><p>Ahora en cartelera</p><h2 id="cineTitle">Sala de cine</h2><span class="bulbs" aria-hidden="true"></span></div>
+    <p class="cine-lede">Tres documentales, una butaca. Elige tu función, apaga el celular y que empiece la película.</p>
+  </div>
+  <div class="theater">
+    <canvas class="beam" id="beam" aria-hidden="true"></canvas>
+    <div class="screen-wrap">
+      <div class="valance" aria-hidden="true"></div>
+      <div class="screen" id="screen">
+        <video class="trailer" id="trailer" muted loop playsinline preload="none" aria-hidden="true"></video>
+        <div class="screen-ui" id="screenUi">
+          <span class="s-tag" id="sTag"></span>
+          <h3 id="sTitle"></h3>
+          <p id="sSyn"></p>
+          <div class="s-actions"><button class="s-play" type="button" id="sPlay">▶ Ver función</button><a class="s-yt" id="sYt" href="#" target="_blank" rel="noopener">Abrir en YouTube ↗</a></div>
+        </div>
+        <div class="leader" id="leader" aria-hidden="true"><span id="leaderN">3</span></div>
+        <div class="player" id="player"></div>
+        <button class="s-exit" type="button" id="sExit">✕ Salir de la función</button>
+      </div>
+      <div class="curtain l" aria-hidden="true"></div><div class="curtain r" aria-hidden="true"></div>
+    </div>
+    <div class="seats" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+  <div class="cartelera" role="group" aria-label="Elige una función">
+      <button class="ticket" type="button" data-i="0" aria-pressed="true">
+        <span class="t-img"><img data-src="media/caracol-2.jpg" alt="" loading="lazy"></span>
+        <span class="t-body"><small>Sala 1 · Función documental</small><b>El camino del caracol</b><span>2026 · Dirección, guion y montaje</span></span>
+        <span class="t-stub" aria-hidden="true"><i>Entrada</i><em>01</em></span>
+      </button>
+      <button class="ticket" type="button" data-i="1" aria-pressed="false">
+        <span class="t-img"><img data-src="media/raices.jpg" alt="" loading="lazy"></span>
+        <span class="t-body"><small>Sala 2 · Función documental</small><b>Raíces</b><span>2022 · 10:52 · Dirección, guion y fotografía</span></span>
+        <span class="t-stub" aria-hidden="true"><i>Entrada</i><em>02</em></span>
+      </button>
+      <button class="ticket" type="button" data-i="2" aria-pressed="false">
+        <span class="t-img"><img data-src="media/maestros-2.jpg" alt="" loading="lazy"></span>
+        <span class="t-body"><small>Sala 3 · Función documental</small><b>Los maestros</b><span>2019 · 9:01 · Ópera prima</span></span>
+        <span class="t-stub" aria-hidden="true"><i>Entrada</i><em>03</em></span>
+      </button>
+  </div>
+  <a class="next-view" href="#perfil"><div><span>Siguiente</span><b>Perfil</b></div><i aria-hidden="true">→</i></a>
+</section>
+
 <!-- PERFIL -->
 <section class="sheet profile view" data-view="perfil" id="perfil" aria-labelledby="perfilTitle">
   <div class="profile-top">
     <div class="portrait reveal">
-      <figure class="print"><span class="tape"></span><div class="slot is-empty"><img src="media/retrato.jpg" alt="Retrato de David Morán Pérez"><div class="slot-hint"><b>Tu retrato</b>Vertical 4:5<code>media/retrato.jpg</code></div></div></figure>
+      <figure class="print"><span class="tape"></span><div class="slot is-empty"><img data-src="media/retrato.jpg" alt="Retrato de David Morán Pérez" loading="lazy" decoding="async"><div class="slot-hint"><b>Tu retrato</b>Vertical 4:5<code>media/retrato.jpg</code></div></div></figure>
     </div>
     <div>
       <h2 class="statement" id="perfilTitle">Uso la comunicación para entender contextos y los datos para tomar mejores decisiones.</h2>
@@ -1262,8 +1483,8 @@ p{margin:0;text-wrap:pretty}
   $$('.slot').forEach(slot => {
     const m = slot.querySelector('img,video'); if (!m) return;
     const ok = () => slot.classList.remove('is-empty');
-    if (m.tagName === 'IMG') { if (m.complete && m.naturalWidth) ok(); m.addEventListener('load', ok); }
-    else { if (m.readyState >= 2) ok(); m.addEventListener('loadeddata', ok); }
+    if (m.tagName === 'IMG') { if (m.getAttribute('src') && m.complete && m.naturalWidth) ok(); m.addEventListener('load', ok); }
+    else { if (m.readyState >= 2 || m.getAttribute('poster') || m.dataset.poster) ok(); m.addEventListener('loadeddata', ok); }
   });
 
   /* navegación */
@@ -1333,7 +1554,7 @@ p{margin:0;text-wrap:pretty}
   const sala = document.createElement('div');
   sala.className = 'sala'; sala.setAttribute('role', 'dialog'); sala.setAttribute('aria-modal', 'true'); sala.setAttribute('aria-label', 'Disciplinas a pantalla completa');
   const D = discs.map(d => ({ name: d.querySelector('.disc-name').textContent, kind: d.querySelector('.disc-kind').textContent, desc: d.dataset.desc, src: d.dataset.src, data: !!d.dataset.anim }));
-  sala.innerHTML = `${D.map((x, i) => `<div class="sala-layer${x.data ? ' is-data' : ''}" data-i="${i}">${x.data ? '<div class="sala-dash"></div>' : `<video src="${x.src}" muted playsinline preload="metadata"></video>`}</div>`).join('')}
+  sala.innerHTML = `${D.map((x, i) => `<div class="sala-layer${x.data ? ' is-data' : ''}" data-i="${i}">${x.data ? '<div class="sala-dash"></div>' : `<video src="${x.src}" poster="${x.src.replace('.mp4', '-poster.jpg')}" muted playsinline preload="none"></video>`}</div>`).join('')}
     <div class="sala-scrim"></div>
     <button class="sala-hit prev" type="button" aria-label="Disciplina anterior"></button><button class="sala-hit next" type="button" aria-label="Disciplina siguiente"></button>
     <div class="sala-top"><span class="sala-count"></span><div class="sala-btns"><button type="button" class="sala-pause">Pausa</button><button type="button" class="sala-close">Cerrar ✕</button></div></div>
@@ -1468,8 +1689,8 @@ p{margin:0;text-wrap:pretty}
         const m = f.querySelector('img, video'), b = document.createElement('button');
         b.type = 'button'; b.setAttribute('aria-label', `Imagen ${i + 1} de ${n}`);
         if (!m) { b.classList.add('is-chart'); b.textContent = 'Cifras'; b.setAttribute('aria-label', 'Resultados del cineforo'); }
-        else if (m.tagName === 'IMG') b.innerHTML = `<img src="${m.getAttribute('src')}" alt="" loading="lazy">`;
-        else { b.classList.add('is-vid'); b.innerHTML = `<video src="${m.getAttribute('src')}#t=1" muted playsinline preload="metadata"></video>`; }
+        else if (m.tagName === 'IMG') b.innerHTML = `<img data-src="${m.getAttribute('src') || m.dataset.src}" alt="">`;
+        else { b.classList.add('is-vid'); const pp = m.getAttribute('poster') || m.dataset.poster; b.innerHTML = pp ? `<img data-src="${pp}" alt="">` : ''; }
         b.addEventListener('click', e => { e.stopPropagation(); show(i); restart(); });
         bar.appendChild(b); return b;
       });
@@ -1478,14 +1699,15 @@ p{margin:0;text-wrap:pretty}
     }
     ph.insertAdjacentHTML('beforeend', '<span class="stage-zoom" aria-hidden="true">Ampliar ⤢</span>');
     const live = () => viewName === 'proyectos' && sp.classList.contains('is-current');
-    function sync() { vids.forEach((v, i) => { if (!v) return; if (i === k && live() && !reduce) v.play().catch(() => {}); else v.pause(); }); if (figs[k].querySelector('.cf') && live()) playCf(); }
+    function paintBg() { const m = figs[k].querySelector('img, video'); const bsrc = m && (m.tagName === 'IMG' ? m.getAttribute('src') : m.getAttribute('poster')); bg.style.backgroundImage = bsrc ? `url("${bsrc}")` : 'none'; }
+    function sync() { paintBg(); vids.forEach((v, i) => { if (!v) return; if (i === k && live() && !reduce) v.play().catch(() => {}); else v.pause(); }); if (figs[k].querySelector('.cf') && live()) playCf(); }
     function show(i) {
       k = (i + n) % n;
       figs.forEach((f, j) => f.classList.toggle('on', j === k));
       thumbs.forEach((b, j) => b.classList.toggle('on', j === k));
       const ct = ph.querySelector('.stage-ct'); if (ct) ct.textContent = `${k + 1} / ${n}` + (figs[k].dataset.cap ? ` · ${figs[k].dataset.cap}` : '');
       const m = figs[k].querySelector('img, video');
-      bg.style.backgroundImage = m && m.tagName === 'IMG' ? `url("${m.getAttribute('src')}")` : 'none';
+      paintBg();
       ph.classList.toggle('on-chart', !m);
       if (thumbs[k]) thumbs[k].scrollIntoView({ block: 'nearest', inline: 'nearest' });
       if (figs[k].querySelector('.cf') && live()) playCf();
@@ -1571,8 +1793,8 @@ p{margin:0;text-wrap:pretty}
       { id: 'eicc', k: 'edu', row: 1, a: 2019, b: 2022.95, l: 'Cine Comunitario', t: 'Diplomado de Cinematografía', o: 'Escuela Internacional de Cine Comunitario, El Salvador', w: '2019 a 2022', d: 'Formación en cinematografía.' },
       { id: 'udem', k: 'edu', row: 1, a: 2026.67, b: NOW, l: 'UDEM', t: 'Diplomado en Data Analyst y Business Intelligence', o: 'Universidad de Monterrey (UDEM)', w: 'En curso desde septiembre de 2026', d: 'Análisis de datos e inteligencia de negocios.', open: true },
       { id: 'rw', k: 'edu', row: 2, a: 2022, b: 2022.9, l: 'Rwanda', t: 'Creative Video Making', o: 'University of Rwanda Cinema Center', w: '2022', d: 'Taller de realización audiovisual.' },
-      { id: 'lm', k: 'doc', row: 0, a: 2019.5, l: 'Los maestros', t: 'Los maestros', o: 'Documental. Dirección y edición', w: '2019', d: 'Saberes locales y metodologías comunitarias.' },
-      { id: 'rai', k: 'doc', row: 0, a: 2022.5, l: 'Raíces', t: 'Raíces', o: 'Documental. Dirección y edición', w: '2022', d: 'Producción, montaje, sonido e hilo narrativo.' },
+      { id: 'lm', k: 'doc', row: 0, a: 2019.5, l: 'Los maestros', t: 'Los maestros', o: 'Ópera prima. Dirección y edición', w: '2019', d: 'Cómo se viven el amor y la muerte en un asilo de ancianos.' },
+      { id: 'rai', k: 'doc', row: 0, a: 2022.5, l: 'Raíces', t: 'Raíces', o: 'Documental. Dirección, guion y fotografía', w: '2022', d: 'Un documental sobre la tierra; Mejor documental en el Festival Internacional de Cine Comunitario.' },
       { id: 'car', k: 'doc', row: 0, a: 2026.25, l: 'El camino del caracol', t: 'El camino del caracol', o: 'Documental. Dirección y edición', w: '2026', d: 'Proceso pedagógico y comunitario en una sola narrativa.' }
     ];
     const tracks = [{ k: 'work', name: 'V1 · TRABAJO', rows: 2 }, { k: 'edu', name: 'V2 · FORMACIÓN', rows: 3 }, { k: 'doc', name: 'A1 · DOCUMENTALES', rows: 1 }];
@@ -1678,7 +1900,7 @@ p{margin:0;text-wrap:pretty}
     const data = [
       { y: 2019, type: 'premio', t: 'Primer lugar', p: 'Noveno Concurso Nacional de Fotografía de Derechos Humanos, Ciudad de México', s: 'Fotografía: Mírate en mis ojos', img: 'media/foto-mirate.jpg', alt: 'Mírate en mis ojos, retrato en blanco y negro' },
       { y: 2019, type: 'publicacion', t: 'Publicación', p: 'Matices, Zeitschrift zu Lateinamerika, Spanien und Portugal', s: 'Revista', img: 'media/matices.jpg', alt: 'Portada de Matices', contain: true },
-      { y: 2021, type: 'premio', t: 'Mejor documental', p: 'Festival Internacional de Cine Comunitario, El Salvador', s: 'Documental', img: 'media/raices.jpg', alt: 'Cartel de Raíces' },
+      { y: 2021, type: 'premio', t: 'Mejor documental', p: 'Festival Internacional de Cine Comunitario, El Salvador', s: 'Documental: Raíces', img: 'media/raices.jpg', alt: 'Cartel de Raíces' },
       { y: 2022, type: 'premio', t: 'Mención honorífica', p: 'The Fear Fair Film Festival, Las Vegas', s: 'Cine' },
       { y: 2022, type: 'publicacion', t: 'Publicación', p: 'Revista Ágora, COLMEX, Ciudad de México', s: 'Revista' }
     ];
@@ -1687,7 +1909,7 @@ p{margin:0;text-wrap:pretty}
     const cards = data.map((d, i) => {
       const c = document.createElement('article');
       c.className = 'vt-card'; c.setAttribute('aria-label', `${d.t}, ${d.y}`);
-      c.innerHTML = (d.img ? `<figure class="vt-img${d.contain ? ' contain' : ''}" style="margin:0"><img src="${d.img}" alt="${d.alt}"></figure>` : `<div class="vt-icon">${d.type === 'premio' ? MEDAL : PAGE}</div>`) +
+      c.innerHTML = (d.img ? `<figure class="vt-img${d.contain ? ' contain' : ''}" style="margin:0"><img data-src="${d.img}" alt="${d.alt}" decoding="async"></figure>` : `<div class="vt-icon">${d.type === 'premio' ? MEDAL : PAGE}</div>`) +
         `<div class="vt-body"><span class="vt-type${d.type === 'premio' ? '' : ' pub'}">${d.type === 'premio' ? 'Premio' : 'Publicación'} · ${d.y}</span><h3>${d.t}</h3><p>${d.p}</p><small>${d.s}</small></div>`;
       c.addEventListener('click', () => { if (vis.indexOf(i) !== cur) go(vis.indexOf(i)); });
       box.appendChild(c); return c;
@@ -1791,7 +2013,7 @@ p{margin:0;text-wrap:pretty}
     function size() {
       W = box.clientWidth; H = box.clientHeight;
       const base = Math.max(38, Math.min(Math.min(W, H) * (W < 600 ? .19 : .185), 112));
-      B.forEach(b => { b.r = base * (b.lv === 3 ? 1 : b.lv === 2 ? .82 : .7); b.el.style.width = b.el.style.height = b.r * 2 + 'px'; b.el.style.fontSize = Math.max(10.5, b.r * .2) + 'px'; });
+      B.forEach(b => { b.r = base * (b.lv === 3 ? 1 : b.lv === 2 ? .82 : .7); b.el.style.width = b.el.style.height = b.r * 2 + 'px'; b.el.style.fontSize = Math.max(11, b.r * .2) + 'px'; });
     }
     function drop() { B.forEach((b, i) => { b.x = b.g === 'av' ? W * (.15 + Math.random() * .3) : W * (.55 + Math.random() * .3); b.y = -b.r - Math.random() * H * .9; b.vx = (Math.random() - .5) * 4; b.vy = 2 + Math.random() * 4; }); }
     function step() {
@@ -1929,11 +2151,80 @@ p{margin:0;text-wrap:pretty}
     });
   })();
 
+  /* ---------------- sala de cine ---------------- */
+  (function cine() {
+    const theater = $('.theater'); if (!theater) return;
+    const FILMS = [{"id": "caracol", "t": "El camino del caracol", "yt": "AyXnP10dirg", "y": "2026", "d": "", "r": "Dirección, guion y montaje", "tr": "media/documental.mp4", "po": "media/caracol-2.jpg", "syn": "Primer documental de la Provincia Marista de México Central: una conversación sobre el Buen Vivir y el cuidado de la Casa Común."}, {"id": "raices", "t": "Raíces", "yt": "oLh7a1mBWBg", "y": "2022", "d": "10:52", "r": "Dirección, guion y fotografía", "tr": "media/raices-avance.mp4", "po": "media/raices.jpg", "syn": "Un documental sobre la tierra y quienes la trabajan. Mejor documental en el Festival Internacional de Cine Comunitario, El Salvador."}, {"id": "maestros", "t": "Los maestros", "yt": "19xK-XsL2qA", "y": "2019", "d": "9:01", "r": "Ópera prima", "tr": "media/maestros-avance.mp4", "po": "media/maestros-2.jpg", "syn": "Cómo se viven el amor y la muerte en un asilo de ancianos, contado por quienes lo habitan."}];
+    const screen = $('#screen'), trailer = $('#trailer'), ui = $('#screenUi'), player = $('#player'), leader = $('#leader'), leaderN = $('#leaderN');
+    const tickets = $$('.ticket'), beam = $('#beam'), bctx = beam.getContext('2d');
+    let cur = 0, timers = [], braf = 0, dust = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    function paintUi() {
+      const f = FILMS[cur];
+      $('#sTag').textContent = `Sala ${cur + 1} · ${f.y}${f.d ? ' · ' + f.d : ''} · ${f.r}`;
+      $('#sTitle').textContent = f.t; $('#sSyn').textContent = f.syn;
+      $('#sYt').href = `https://www.youtube.com/watch?v=${f.yt}`;
+      ui.classList.remove('swap'); void ui.offsetWidth; ui.classList.add('swap');
+      tickets.forEach((t, i) => t.setAttribute('aria-pressed', i === cur));
+    }
+    function loadTrailer() { trailer.src = FILMS[cur].tr; trailer.poster = FILMS[cur].po; trailer.autoplay = !reduce; if (!reduce) trailer.play().catch(() => {}); }
+    trailer.addEventListener('canplay', () => { if (!reduce && viewName === 'cine' && !screen.classList.contains('playing')) trailer.play().catch(() => {}); });
+    function stopFilm() { clear(); player.innerHTML = ''; screen.classList.remove('playing'); theater.classList.remove('film'); leader.classList.remove('on'); }
+    function select(i, animate = true) {
+      if (i === cur && animate && theater.classList.contains('open')) { stopFilm(); return; }
+      stopFilm(); cur = i;
+      if (!animate || reduce) { loadTrailer(); paintUi(); theater.classList.add('open'); return; }
+      theater.classList.remove('open');
+      timers.push(setTimeout(() => { loadTrailer(); paintUi(); theater.classList.add('open'); }, 900));
+    }
+    function play() {
+      clear(); trailer.pause();
+      const go = () => { leader.classList.remove('on'); player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${FILMS[cur].yt}?autoplay=1&rel=0&modestbranding=1" title="${FILMS[cur].t}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`; screen.classList.add('playing'); theater.classList.add('film'); $('#sExit').focus(); };
+      if (reduce) { go(); return; }
+      leader.classList.add('on'); let n = 3; leaderN.textContent = n;
+      const t0 = performance.now();
+      const sweep = now => { if (!leader.classList.contains('on')) return; const e = ((now - t0) % 1000) / 1000 * 360; leader.style.setProperty('--sw', e + 'deg'); requestAnimationFrame(sweep); };
+      requestAnimationFrame(sweep);
+      [1, 2].forEach(k => timers.push(setTimeout(() => { leaderN.textContent = 3 - k; }, k * 1000)));
+      timers.push(setTimeout(go, 3000));
+    }
+    $('#sPlay').addEventListener('click', play);
+    $('#sExit').addEventListener('click', () => { stopFilm(); if (!reduce) trailer.play().catch(() => {}); $('#sPlay').focus(); });
+    tickets.forEach(t => t.addEventListener('click', () => select(+t.dataset.i)));
+    addEventListener('keydown', e => { if (e.key === 'Escape' && screen.classList.contains('playing')) { stopFilm(); trailer.play().catch(() => {}); } });
+    // enlaces del álbum que eligen función
+    $$('a[data-film]').forEach(a => a.addEventListener('click', () => { cur = +a.dataset.film; }));
+    // haz del proyector con polvo
+    function beamLoop() {
+      const r = beam.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1), W = r.width, H = r.height;
+      if (beam.width !== Math.round(W * dpr)) { beam.width = W * dpr; beam.height = H * dpr; bctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+      bctx.clearRect(0, 0, W, H);
+      const sx = W / 2, sy = 0, sw = Math.min(W, 1180), x0 = (W - sw) / 2, y1 = 150, yEnd = 140 + sw * 9 / 16;
+      const g = bctx.createLinearGradient(0, 0, 0, y1);
+      g.addColorStop(0, 'rgba(255,240,205,.3)'); g.addColorStop(1, 'rgba(255,240,205,.04)');
+      bctx.fillStyle = g; bctx.beginPath(); bctx.moveTo(sx - 6, sy); bctx.lineTo(sx + 6, sy); bctx.lineTo(x0 + sw, y1); bctx.lineTo(x0, y1); bctx.closePath(); bctx.globalAlpha = .55 + Math.random() * .08; bctx.fill(); bctx.globalAlpha = 1;
+      if (dust.length < 70) dust.push({ x: Math.random(), y: Math.random(), v: .0004 + Math.random() * .0008, s: .6 + Math.random() * 1.6, a: Math.random() * .6 });
+      dust.forEach(d => { d.y -= d.v; d.x += Math.sin((d.y + d.a) * 9) * .0004; if (d.y < 0) d.y = 1;
+        const py = d.y * yEnd, half = 6 + (sw / 2 - 6) * Math.min(1, py / y1), px = sx + (d.x - .5) * 2 * half;
+        bctx.fillStyle = `rgba(255,244,220,${(py > y1 ? .12 : .3) + d.a * .4})`; bctx.beginPath(); bctx.arc(px, py, d.s, 0, 7); bctx.fill(); });
+      braf = requestAnimationFrame(beamLoop);
+    }
+    document.addEventListener('view', e => {
+      if (e.detail === 'cine') {
+        theater.classList.remove('open'); select(cur, false); theater.classList.remove('open');
+        timers.push(setTimeout(() => theater.classList.add('open'), reduce ? 0 : 900));
+        if (!reduce && !braf) braf = requestAnimationFrame(beamLoop);
+      } else { stopFilm(); trailer.pause(); cancelAnimationFrame(braf); braf = 0; }
+    });
+    paintUi();
+  })();
+
   /* vistas: el menú abre cada sección como una ventana */
   const views = $$('.view'), navLinks = $$('.nav ul a, .menu-panel a');
   function showView(v, target) {
     const changed = v.dataset.view !== viewName || !v.classList.contains('is-on');
     if (changed) {
+      $$('img[data-src], video[data-poster]', v).forEach(m => { if (m.dataset.src) { m.src = m.dataset.src; m.removeAttribute('data-src'); } if (m.dataset.poster) { m.poster = m.dataset.poster; m.removeAttribute('data-poster'); } });
       views.forEach(x => x.classList.toggle('is-on', x === v));
       viewName = v.dataset.view;
       scrollTo({ top: 0, behavior: 'instant' });
